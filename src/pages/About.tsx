@@ -1,11 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getFeaturedHonors } from '../data/honorsData';
 import ContactCTA from '../components/ContactCTA';
 
 export default function About() {
   const location = useLocation();
+  const [copiedText, setCopiedText] = useState<string | null>(null);
   const featuredHonors = getFeaturedHonors();
+
+  const handleCopy = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedText(text);
+      setTimeout(() => {
+        setCopiedText(null);
+      }, 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
 
   useEffect(() => {
     if (location.hash) {
@@ -33,18 +46,36 @@ export default function About() {
             </div>
             <div className="flex flex-col gap-3">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">联系方式</h3>
-              <a href="mailto:henryhsia@163.com" className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+              <button
+                onClick={() => handleCopy('henryhsia@163.com')}
+                className="flex items-center w-fit gap-3 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-left relative group"
+                title="点击复制"
+              >
                 <span className="material-symbols-outlined text-xl">mail</span>
                 <span>henryhsia@163.com</span>
-              </a>
-              <a href="#" className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                {copiedText === 'henryhsia@163.com' ? (
+                  <span className="ml-1 text-xs text-green-600 dark:text-green-500 font-bold bg-green-100 dark:bg-green-900/40 px-2 py-0.5 rounded">已复制!</span>
+                ) : (
+                  <span className="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100 transition-opacity">content_copy</span>
+                )}
+              </button>
+              <button
+                onClick={() => handleCopy('17679055790')}
+                className="flex items-center w-fit gap-3 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-left relative group"
+                title="点击复制"
+              >
                 <span className="material-symbols-outlined text-xl">link</span>
                 <span>17679055790</span>
-              </a>
-              <a href="#" className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                {copiedText === '17679055790' ? (
+                  <span className="ml-1 text-xs text-green-600 dark:text-green-500 font-bold bg-green-100 dark:bg-green-900/40 px-2 py-0.5 rounded">已复制!</span>
+                ) : (
+                  <span className="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100 transition-opacity">content_copy</span>
+                )}
+              </button>
+              <div className="flex items-center w-fit gap-3 text-slate-600 dark:text-slate-400 cursor-default">
                 <span className="material-symbols-outlined text-xl">location_on</span>
                 <span>北京, 中国</span>
-              </a>
+              </div>
             </div>
           </div>
 
