@@ -86,7 +86,7 @@ export default function Resume() {
                   <p className="text-primary font-medium mb-3">国际业务部实习生</p>
                   <ul className="list-disc list-outside ml-5 text-slate-600 dark:text-slate-400 text-sm space-y-2">
                     <li><strong>【海外用户增长与多端运营】</strong>负责千万级粉丝传统文化IP"山白"的海外媒体账号矩阵运营，利用Meta BS平台整合了"山白"Facebook和Instagram账号，实现双端同步运营，通过分析海外公众画像与内容数据进行分发策略优化，最终实现Instagram账号粉丝突破10w+，YouTube账号涨粉超2w</li>
-                    <li><strong>【海外市场调研与商业策划】</strong>为《喝响非洲》海外文旅项目进行前期商业化调研，探集并分析目标市场（肯尼亚）的用户基础、商业中心与KOL资源，独立输出项目前景分析报告，并策划产品表现形式与赛制链路，为项目冷启动提供决策支撑</li>
+                    <li><strong>【海外市场调研与商业策划】</strong>为《唱响非洲》海外文娱项目进行前期商业化调研，探集并分析目标市场（肯尼亚）的用户基础、商业中心与KOL资源，独立输出项目前景分析报告，并策划产品表现形式与赛制链路，为项目冷启动提供决策支撑</li>
                     <li><strong>【大型项目统筹与落地执行】</strong>参与第四届长沙慈善榜及2024中国新媒体大会国际传播论坛筹备，作为场地统筹及志愿者负责人，管理多方人员调度及物料资产，保障千人级规模活动顺利落地</li>
                   </ul>
                 </div>
