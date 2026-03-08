@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="w-full max-w-[1200px] px-4 md:px-10 flex flex-col gap-12 py-12 md:py-20">
       <div className="@container">
-        <div className="flex flex-col-reverse md:flex-row gap-8 items-center">
+        <div className="flex flex-col-reverse md:flex-row gap-8 md:gap-12 lg:gap-20 items-center justify-between">
           <div className="flex flex-col gap-6 flex-1 text-left">
             <h1 className="text-slate-900 dark:text-white text-3xl md:text-4xl lg:text-5xl font-black leading-tight tracking-tight">
               你好，我是夏好磊
@@ -40,10 +40,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-[35%] lg:w-[30%] aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl bg-slate-100 relative group">
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent z-10"></div>
+          <div className="mx-auto md:mx-0 w-2/3 sm:w-1/2 md:w-[35%] lg:w-[26%] max-w-[280px] aspect-[3/4] rounded-[2rem] overflow-hidden shadow-2xl shadow-slate-200 border border-slate-100/50 dark:border-slate-800 dark:shadow-none bg-slate-50 relative group shrink-0">
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent z-10 mix-blend-overlay"></div>
             <div
-              className="w-full h-full bg-cover bg-[center_25%] transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-full bg-cover bg-[center_28%] transition-transform duration-700 group-hover:scale-105"
               style={{
                 backgroundImage: 'url("/avatar.jpg")',
               }}
