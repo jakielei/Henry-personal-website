@@ -219,8 +219,9 @@ export default function Resume() {
               <div className="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-wider">产品/数据技能</h3>
                 <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">原型设计（Axure、墨刀等）</span>
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">数据分析（SPSS、Python）</span>
+                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">原型设计（Axure、Figma等）</span>
+                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">数据分析（SPSS、Python等）</span>
+                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">Vibe Coding（Cursor、Antigravity等）</span>
                 </div>
               </div>
               <div className="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
@@ -243,9 +244,10 @@ export default function Resume() {
               <ul className="list-disc list-outside ml-5 text-slate-600 dark:text-slate-400 text-sm space-y-2">
                 <li>北京师范大学勤工助学优秀个人</li>
                 <li>连续3年获秋中南大学校学年三等奖学金（前20%）</li>
-                <li>2022年中南大学先进个人（前25%）</li>
+                <li>2022年中南大学勤工助学先进个人（前25%）</li>
                 <li>"外研社·国才杯"全国大学生外语能力大赛校赛三等奖</li>
-                <li>全国大学生延安精神志愿宣讲活动优秀文创奖等</li>
+                <li>全国大学生延安精神志愿宣讲活动优秀文创奖</li>
+                <li>……</li>
               </ul>
             </div>
           </section>
