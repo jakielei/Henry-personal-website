@@ -1,11 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'motion/react';
 
 export default function Layout() {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [copiedText, setCopiedText] = useState('');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleOpenContact = () => setIsContactModalOpen(true);
@@ -28,7 +38,7 @@ export default function Layout() {
 
   return (
     <div className="relative flex min-h-screen w-full flex-col group/design-root">
-      <header className="print:hidden sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-6 md:px-10 py-4">
+      <header className={`print:hidden sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-6 md:px-10 transition-all duration-300 ${scrolled ? 'py-2 shadow-md' : 'py-4'}`}>
         <div className="flex items-center gap-2 text-slate-900 dark:text-white">
           <div className="flex items-center justify-center size-8 rounded bg-primary text-white">
             <span className="material-symbols-outlined text-[20px]">person</span>
@@ -71,9 +81,15 @@ export default function Layout() {
       </header>
 
       {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 top-[73px] z-40 bg-white dark:bg-slate-900 md:hidden flex flex-col border-b border-slate-200 dark:border-slate-800">
-          <nav className="flex flex-col px-6 py-8 gap-6">
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="fixed inset-0 top-[73px] z-40 bg-white dark:bg-slate-900 md:hidden flex flex-col border-b border-slate-200 dark:border-slate-800"
+          >
+            <nav className="flex flex-col px-6 py-8 gap-6">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(link.path));
               return (
@@ -102,17 +118,30 @@ export default function Layout() {
               </button>
             </div>
           </nav>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
       <main className="flex-1 flex flex-col items-center w-full">
         <Outlet />
       </main>
 
       {/* Contact Modal */}
-      {isContactModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl max-w-md w-full p-6 relative animate-in fade-in zoom-in-95 duration-200">
+      <AnimatePresence>
+        {isContactModalOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4"
+          >
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl max-w-md w-full p-6 relative"
+            >
             <button
               onClick={() => setIsContactModalOpen(false)}
               className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
@@ -155,9 +184,10 @@ export default function Layout() {
                 </button>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
       <footer className="print:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-12 px-10">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">

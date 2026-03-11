@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { honorsData, honorCategories, getHonorsByCategory } from '../data/honorsData';
+import { motion } from 'motion/react';
+import { fadeInUp, staggerContainer } from '../utils/motion-variants';
 
 export default function HonorsCollection() {
     const location = useLocation();
@@ -21,7 +23,12 @@ export default function HonorsCollection() {
             <div className="px-4 md:px-20 lg:px-40 flex flex-1 justify-center py-8">
                 <div className="layout-content-container flex flex-col max-w-[1200px] w-full flex-1">
                     {/* 返回 + 标题 */}
-                    <div className="mb-8">
+                    <motion.div 
+                        variants={fadeInUp}
+                        initial="hidden"
+                        animate="visible"
+                        className="mb-8"
+                    >
                         <Link
                             to="/about#honors"
                             className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-medium mb-6"
@@ -40,7 +47,7 @@ export default function HonorsCollection() {
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* 分类区块 */}
                     <div className="flex flex-col gap-14">
@@ -48,16 +55,22 @@ export default function HonorsCollection() {
                             const items = getHonorsByCategory(cat.key);
                             if (items.length === 0) return null;
                             return (
-                                <section key={cat.key}>
-                                    <div className="flex items-center gap-3 mb-6">
+                                <motion.section 
+                                    key={cat.key}
+                                    variants={staggerContainer}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true, margin: "-50px" }}
+                                >
+                                    <motion.div variants={fadeInUp} className="flex items-center gap-3 mb-6">
                                         <span className={`material-symbols-outlined text-2xl ${cat.color}`}>{cat.icon}</span>
                                         <h2 className="text-xl font-bold text-slate-900 dark:text-white">{cat.key}</h2>
                                         <span className="text-sm text-slate-400 dark:text-slate-500 font-medium">({items.length})</span>
-                                    </div>
+                                    </motion.div>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                                         {items.map((honor) => (
+                                            <motion.div variants={fadeInUp} key={honor.id} className="h-full">
                                             <Link
-                                                key={honor.id}
                                                 id={`honor-${honor.id}`}
                                                 to={`/honors/${honor.id}`}
                                                 state={{ from: `/honors#honor-${honor.id}` }}
@@ -84,9 +97,10 @@ export default function HonorsCollection() {
                                                     </div>
                                                 </div>
                                             </Link>
+                                            </motion.div>
                                         ))}
                                     </div>
-                                </section>
+                                </motion.section>
                             );
                         })}
                     </div>

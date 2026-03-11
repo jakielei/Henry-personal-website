@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getFeaturedHonors } from '../data/honorsData';
+import { motion } from 'motion/react';
+import { fadeInUp, staggerContainer, scaleIn } from '../utils/motion-variants';
 import ContactCTA from '../components/ContactCTA';
 
 export default function About() {
@@ -36,15 +38,25 @@ export default function About() {
       <div className="layout-content-container flex flex-col max-w-[1200px] w-full mx-auto flex-1 gap-10">
         <div className="flex flex-col md:flex-row gap-8 items-start">
           <div className="w-full md:w-1/4 flex flex-col gap-6">
-            <div className="w-full max-w-[240px] aspect-square rounded-2xl overflow-hidden shadow-lg bg-slate-100 relative">
+            <motion.div 
+              variants={scaleIn}
+              initial="hidden"
+              animate="visible"
+              className="w-full max-w-[240px] aspect-square rounded-2xl overflow-hidden shadow-lg bg-slate-100 relative"
+            >
               <div
                 className="absolute inset-0 bg-cover bg-[center_20%]"
                 style={{
                   backgroundImage: 'url("/avatar.jpg")',
                 }}
               ></div>
-            </div>
-            <div className="flex flex-col gap-3">
+            </motion.div>
+            <motion.div 
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-col gap-3"
+            >
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">联系方式</h3>
               <button
                 onClick={() => handleCopy('henryhsia@163.com')}
@@ -76,18 +88,23 @@ export default function About() {
                 <span className="material-symbols-outlined text-xl">location_on</span>
                 <span>北京, 中国</span>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="w-full md:w-3/4 flex flex-col gap-8">
-            <div className="flex flex-col gap-4">
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="w-full md:w-3/4 flex flex-col gap-8"
+          >
+            <motion.div variants={fadeInUp} className="flex flex-col gap-4">
               <h1 className="text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] text-slate-900 dark:text-white">关于我</h1>
               <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                 新闻传播学背景，热衷于用户研究、内容策划与数字产品设计，致力于构建有意义的数字体验。
               </p>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col gap-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+            <motion.div variants={fadeInUp} className="flex flex-col gap-6 text-slate-600 dark:text-slate-400 leading-relaxed">
               <p>
                 在本科期间，我主修新闻传播大类下的数字出版专业。这段经历培养了我敏锐的观察力、深入的调研能力以及将复杂信息转化为引人入胜故事的技巧。我曾在校园媒体担任编辑，负责策划、报道、运营校园媒体公众号，这让我深刻理解了受众需求和信息传递的有效性。
               </p>
@@ -100,45 +117,58 @@ export default function About() {
               <p>
                 我希望将新闻传播学视角与实际的产品实践相结合，不断探索内容、技术与用户体验的交汇点，创造既有商业价值又能真正解决用户痛点的作品。
               </p>
-            </div>
+            </motion.div>
 
-            <div className="mt-4">
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">核心能力</h2>
+            <motion.div 
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              className="mt-4"
+            >
+              <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-slate-900 dark:text-white mb-6">核心能力</motion.h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                <motion.div variants={fadeInUp} className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
                   <span className="material-symbols-outlined text-primary text-3xl mb-4">psychology</span>
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">用户洞察</h3>
                   <p className="text-sm text-slate-600 dark:text-slate-400">
                     熟练运用深度访谈、问卷调查等方法，挖掘用户真实需求与痛点。
                   </p>
-                </div>
-                <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                </motion.div>
+                <motion.div variants={fadeInUp} className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
                   <span className="material-symbols-outlined text-primary text-3xl mb-4">architecture</span>
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">产品设计</h3>
                   <p className="text-sm text-slate-600 dark:text-slate-400">
                     能够独立完成竞品分析、需求文档（PRD）编写及原型设计（Axure/Figma）。
                   </p>
-                </div>
-                <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                </motion.div>
+                <motion.div variants={fadeInUp} className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
                   <span className="material-symbols-outlined text-primary text-3xl mb-4">edit_note</span>
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">内容策略</h3>
                   <p className="text-sm text-slate-600 dark:text-slate-400">
                     具备优秀的内容策划与文案撰写能力，善于通过文字传递产品价值。
                   </p>
-                </div>
-                <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
+                </motion.div>
+                <motion.div variants={fadeInUp} className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
                   <span className="material-symbols-outlined text-primary text-3xl mb-4">forum</span>
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">跨部门沟通</h3>
                   <p className="text-sm text-slate-600 dark:text-slate-400">
                     擅长与开发、设计、运营等团队进行高效沟通，推动项目顺利落地。
                   </p>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
             {/* 荣誉与认证 */}
-            <div className="mt-8" id="honors">
-              <div className="flex items-center gap-3 mb-8">
+            <motion.div 
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              className="mt-8" 
+              id="honors"
+            >
+              <motion.div variants={fadeInUp} className="flex items-center gap-3 mb-8">
                 <div className="w-10 h-10 rounded-full bg-slate-800 dark:bg-slate-200 flex items-center justify-center">
                   <span className="material-symbols-outlined text-white dark:text-slate-800 text-xl">military_tech</span>
                 </div>
@@ -150,12 +180,12 @@ export default function About() {
                   查看全部
                   <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
                 </Link>
-              </div>
+              </motion.div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {featuredHonors.map((cert) => (
+                  <motion.div variants={fadeInUp} key={cert.id} className="h-full">
                   <Link
-                    key={cert.id}
                     to={`/honors/${cert.id}`}
                     state={{ from: '/about#honors' }}
                     className="flex flex-col h-full bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
@@ -181,10 +211,11 @@ export default function About() {
                       </div>
                     </div>
                   </Link>
+                  </motion.div>
                 ))}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
         <ContactCTA title="对我的经历感兴趣吗？" />
       </div>

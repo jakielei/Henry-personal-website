@@ -1,5 +1,7 @@
 import { Link, useParams, Navigate, useLocation } from 'react-router-dom';
 import { honorsData } from '../data/honorsData';
+import { motion } from 'motion/react';
+import { scaleIn, staggerContainer, fadeInUp } from '../utils/motion-variants';
 
 export default function HonorDetail() {
     const { id } = useParams<{ id: string }>();
@@ -29,18 +31,28 @@ export default function HonorDetail() {
                     </div>
 
                     {/* 证书图片 */}
-                    <div className="w-full bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm mb-8">
+                    <motion.div 
+                        variants={scaleIn}
+                        initial="hidden"
+                        animate="visible"
+                        className="w-full bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm mb-8"
+                    >
                         <img
                             src={honor.image}
                             alt={honor.title}
                             className="w-full h-auto object-contain"
                             style={{ minHeight: '300px' }}
                         />
-                    </div>
+                    </motion.div>
 
                     {/* 信息区域 */}
-                    <div className="flex flex-col gap-6">
-                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                    <motion.div 
+                        variants={staggerContainer}
+                        initial="hidden"
+                        animate="visible"
+                        className="flex flex-col gap-6"
+                    >
+                        <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                             <div className="flex-1">
                                 <span className="inline-block text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-3 py-1 rounded-full mb-3">
                                     {honor.category}
@@ -58,11 +70,11 @@ export default function HonorDetail() {
                             <span className="text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-4 py-2 rounded-full whitespace-nowrap font-semibold self-start">
                                 {honor.date}
                             </span>
-                        </div>
+                        </motion.div>
 
                         <div className="h-px w-full bg-slate-200 dark:bg-slate-700"></div>
 
-                        <div>
+                        <motion.div variants={fadeInUp}>
                             <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                                 <span className="material-symbols-outlined text-primary">description</span>
                                 详细介绍
@@ -70,8 +82,8 @@ export default function HonorDetail() {
                             <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-base">
                                 {honor.description}
                             </p>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </div>
         </div>

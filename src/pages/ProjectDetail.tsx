@@ -1,4 +1,6 @@
 import { Link, useParams, useLocation, Navigate } from 'react-router-dom';
+import { motion } from 'motion/react';
+import { fadeInUp, staggerContainer, scaleIn, fadeIn } from '../utils/motion-variants';
 import { projectsData } from '../data/projectsData';
 
 export default function ProjectDetail() {
@@ -31,7 +33,12 @@ export default function ProjectDetail() {
 
           {/* Hero Section */}
           <div className="@container">
-            <div className="flex flex-col gap-6 py-4 @[480px]:gap-8 @[864px]:flex-row">
+            <motion.div 
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-col gap-6 py-4 @[480px]:gap-8 @[864px]:flex-row"
+            >
               <div
                 className="w-full bg-slate-200 dark:bg-slate-800 bg-center bg-no-repeat aspect-video bg-cover rounded-xl shadow-sm @[480px]:h-auto @[480px]:min-w-[400px] @[864px]:w-1/2 overflow-hidden relative group"
                 style={{ backgroundImage: `url("${project.heroImage}")` }}
@@ -56,13 +63,19 @@ export default function ProjectDetail() {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           <div className="h-px w-full bg-slate-200 dark:bg-slate-800 my-8"></div>
 
           {/* Background & Problem */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 py-8">
+          <motion.div 
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid grid-cols-1 md:grid-cols-12 gap-10 py-8"
+          >
             <div className="md:col-span-4">
               <h3 className="text-slate-900 dark:text-white text-xl font-bold mb-4 flex items-center gap-2">
                 <span className="material-symbols-outlined text-primary">info</span>
@@ -83,24 +96,36 @@ export default function ProjectDetail() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Research & Data */}
-          <div className="py-12">
+          <motion.div 
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="py-12"
+          >
             <h2 className="text-slate-900 dark:text-white text-2xl font-bold leading-tight tracking-tight mb-8 flex items-center gap-3">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">
                 <span className="material-symbols-outlined text-sm">search</span>
               </span>
               调研与数据
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <motion.div 
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
+            >
               {project.stats.map((stat, i) => (
-                <div key={i} className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+                <motion.div variants={scaleIn} key={i} className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
                   <div className="text-primary text-4xl font-black mb-2">{stat.value}</div>
                   <p className="text-slate-600 dark:text-slate-400 text-sm">{stat.text}</p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
             {project.quotes.length > 0 && (
               <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-8 border border-slate-200 dark:border-slate-800">
                 <h3 className="text-slate-900 dark:text-white text-lg font-bold mb-4">关键洞察</h3>
@@ -120,10 +145,16 @@ export default function ProjectDetail() {
                 </div>
               </div>
             )}
-          </div>
+          </motion.div>
 
           {/* Solution */}
-          <div className="py-12">
+          <motion.div 
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="py-12"
+          >
             <h2 className="text-slate-900 dark:text-white text-2xl font-bold leading-tight tracking-tight mb-8 flex items-center gap-3">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">
                 <span className="material-symbols-outlined text-sm">design_services</span>
@@ -179,10 +210,16 @@ export default function ProjectDetail() {
                 </div>
               </div>
             )}
-          </div>
+          </motion.div>
 
           {/* Results & Reflection */}
-          <div className="py-12 border-b border-slate-200 dark:border-slate-800">
+          <motion.div 
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="py-12 border-b border-slate-200 dark:border-slate-800"
+          >
             <h2 className="text-slate-900 dark:text-white text-2xl font-bold leading-tight tracking-tight mb-8 flex items-center gap-3">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">
                 <span className="material-symbols-outlined text-sm">trending_up</span>
@@ -211,7 +248,7 @@ export default function ProjectDetail() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Next Project */}
           <div className="py-12 flex justify-between items-center">

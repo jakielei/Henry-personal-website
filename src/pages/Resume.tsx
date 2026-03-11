@@ -1,10 +1,17 @@
 import ContactCTA from '../components/ContactCTA';
+import { motion } from 'motion/react';
+import { fadeInUp, staggerContainer, fadeIn } from '../utils/motion-variants';
 
 export default function Resume() {
   return (
     <div className="layout-container flex h-full grow flex-col px-4 md:px-10 lg:px-40 py-10 w-full">
       <div className="layout-content-container flex flex-col max-w-[900px] w-full mx-auto flex-1 gap-10">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-slate-200 dark:border-slate-800 pb-8">
+        <motion.div 
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-slate-200 dark:border-slate-800 pb-8"
+        >
           <div className="flex flex-col gap-2">
             <h1 className="text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] text-slate-900 dark:text-white">个人简历</h1>
             <p className="text-lg text-slate-600 dark:text-slate-400">夏好磊 | 男 · 22岁 · 17679055790 · henryhsia@163.com</p>
@@ -17,11 +24,16 @@ export default function Resume() {
             <span className="material-symbols-outlined text-[18px]">download</span>
             下载 PDF
           </a>
-        </div>
+        </motion.div>
 
         <div className="flex flex-col gap-12">
           {/* 教育背景 */}
-          <section>
+          <motion.section
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
               <span className="material-symbols-outlined text-primary">school</span>
               教育背景
@@ -53,10 +65,15 @@ export default function Resume() {
                 </div>
               </div>
             </div>
-          </section>
+          </motion.section>
 
           {/* 实习经历 */}
-          <section>
+          <motion.section
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
               <span className="material-symbols-outlined text-primary">work</span>
               实习经历
@@ -110,10 +127,15 @@ export default function Resume() {
                 </div>
               </div>
             </div>
-          </section>
+          </motion.section>
 
           {/* 校园经历 */}
-          <section>
+          <motion.section
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
               <span className="material-symbols-outlined text-primary">groups</span>
               校园经历
@@ -150,10 +172,15 @@ export default function Resume() {
                 </div>
               </div>
             </div>
-          </section>
+          </motion.section>
 
           {/* 项目经历 */}
-          <section>
+          <motion.section
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
               <span className="material-symbols-outlined text-primary">rocket_launch</span>
               项目经历
@@ -207,10 +234,15 @@ export default function Resume() {
                 </div>
               </div>
             </div>
-          </section>
+          </motion.section>
 
           {/* 技能/荣誉 */}
-          <section>
+          <motion.section
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
               <span className="material-symbols-outlined text-primary">build</span>
               技能/荣誉
@@ -218,24 +250,24 @@ export default function Resume() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-wider">产品/数据技能</h3>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">原型设计（Axure、Figma等）</span>
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">数据分析（SPSS、Python等）</span>
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">Vibe Coding（Cursor、Antigravity等）</span>
-                </div>
+                <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-wrap gap-2">
+                  <motion.span variants={fadeIn} className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">原型设计（Axure、Figma等）</motion.span>
+                  <motion.span variants={fadeIn} className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">数据分析（SPSS、Python等）</motion.span>
+                  <motion.span variants={fadeIn} className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">Vibe Coding（Cursor、Antigravity等）</motion.span>
+                </motion.div>
               </div>
               <div className="bg-slate-50 dark:bg-slate-800/50 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-wider">通用技能</h3>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">英语（CET-6: 601, CET-4: 603）</span>
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">Office办公软件（计算机二级）</span>
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">视频剪辑（PR、剪映等）</span>
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">物料宣传制作（PS、Canva等）</span>
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">排版编辑（秀米编辑器、135编辑器等）</span>
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">公众号运营</span>
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">文案撰写</span>
-                  <span className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">摄影摄像</span>
-                </div>
+                <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-wrap gap-2">
+                  <motion.span variants={fadeIn} className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">英语（CET-6: 601, CET-4: 603）</motion.span>
+                  <motion.span variants={fadeIn} className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">Office办公软件（计算机二级）</motion.span>
+                  <motion.span variants={fadeIn} className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">视频剪辑（PR、剪映等）</motion.span>
+                  <motion.span variants={fadeIn} className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">物料宣传制作（PS、Canva等）</motion.span>
+                  <motion.span variants={fadeIn} className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">排版编辑（秀米编辑器、135编辑器等）</motion.span>
+                  <motion.span variants={fadeIn} className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">公众号运营</motion.span>
+                  <motion.span variants={fadeIn} className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">文案撰写</motion.span>
+                  <motion.span variants={fadeIn} className="px-3 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-full text-sm text-slate-700 dark:text-slate-300">摄影摄像</motion.span>
+                </motion.div>
               </div>
             </div>
 
@@ -250,7 +282,7 @@ export default function Resume() {
                 <li>……</li>
               </ul>
             </div>
-          </section>
+          </motion.section>
         </div>
         <ContactCTA title="对我的经历感兴趣吗？" />
       </div>
