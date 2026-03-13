@@ -19,20 +19,35 @@ export default function ResumeDownloadModal({ isOpen, onClose }: ResumeDownloadM
     };
   }, [isOpen]);
 
-  const handleDownload = (type: 'PM' | 'OP') => {
+  const handleDownload = async (type: 'PM' | 'OP') => {
     const url = type === 'PM' ? './resume_PM.pdf' : './resume_OP.pdf';
     const filename = type === 'PM' ? '夏好磊-北师大-产品.pdf' : '夏好磊-北师大-运营.pdf';
 
-    // 创建一个隐藏的 a 标签并触发点击进行下载
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      // 1. 先用 fetch 把服务器上的 pdf 请求到浏览器内存里
+      const response = await fetch(url);
+      const blob = await response.blob();
 
-    // 可以选择下载后关闭弹窗
-    // onClose();
+      // 2. 将内存里的文件转换成一个本地的特殊链接 (blob:http://...)
+      const localUrl = window.URL.createObjectURL(blob);
+
+      // 3. 接下来就是你原本的代码，只是把 href 换成了本地链接
+      const link = document.createElement('a');
+      link.href = localUrl; // 关键改变：这里不用原来的 url 了
+      link.download = filename; // 因为是本地链接，这个重命名命令现在 100% 会成功！
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // 4. 下载完后释放内存
+      window.URL.revokeObjectURL(localUrl);
+
+    } catch (error) {
+      console.error('下载失败', error);
+      // 如果 fetch 失败，降级回老方法（哪怕名字不对，至少能下载）
+      window.open(url, '_blank');
+    }
   };
 
   return (
