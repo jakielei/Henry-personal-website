@@ -22,7 +22,7 @@ export default function ResumeDownloadModal({ isOpen, onClose }: ResumeDownloadM
   const handleDownload = (type: 'PM' | 'OP') => {
     const url = type === 'PM' ? './resume_PM.pdf' : './resume_OP.pdf';
     const filename = type === 'PM' ? '夏好磊-北师大-产品.pdf' : '夏好磊-北师大-运营.pdf';
-    
+
     // 创建一个隐藏的 a 标签并触发点击进行下载
     const link = document.createElement('a');
     link.href = url;
@@ -30,7 +30,7 @@ export default function ResumeDownloadModal({ isOpen, onClose }: ResumeDownloadM
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     // 可以选择下载后关闭弹窗
     // onClose();
   };
@@ -62,7 +62,7 @@ export default function ResumeDownloadModal({ isOpen, onClose }: ResumeDownloadM
                   <span className="material-symbols-outlined text-[20px]">close</span>
                 </button>
               </div>
-              
+
               <div className="p-6 flex flex-col gap-4">
                 <button
                   onClick={() => handleDownload('PM')}

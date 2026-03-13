@@ -31,7 +31,7 @@ export default function HonorDetail() {
                     </div>
 
                     {/* 证书图片 */}
-                    <motion.div 
+                    <motion.div
                         variants={scaleIn}
                         initial="hidden"
                         animate="visible"
@@ -46,7 +46,7 @@ export default function HonorDetail() {
                     </motion.div>
 
                     {/* 信息区域 */}
-                    <motion.div 
+                    <motion.div
                         variants={staggerContainer}
                         initial="hidden"
                         animate="visible"
