@@ -168,7 +168,6 @@ export const honorsData: HonorItem[] = [
         image: '/honors/湖南广电国际频道实习证明（中文）.png',
         description:
             '在湖南广播电视台国际频道进行了为期8周的实习。实习期间参与了活动执行、新媒体运营等多种任务，表现出深厚的专业素养和优秀品德，工作细心踏实，出色完成了各项工作。',
-        featured: true,
     },
     {
         id: 'hunan-daily-internship',
@@ -191,7 +190,18 @@ export const honorsData: HonorItem[] = [
             '自2023年10月至2024年7月，在中南大学融媒体发展研究中心实习，从事新媒体编辑相关工作。在将近一年的实习期间，态度积极且认真负责，得到了学院老师的一致认可。',
     },
 
-    // ======== 学校荣誉 (5) ========
+    // ======== 学校荣誉 (6) ========
+    {
+        id: 'cac-adoption-certificate',
+        category: '学校荣誉',
+        title: '内参采纳证明',
+        issuer: '中国网络空间研究院',
+        date: '2026.03',
+        image: '/honors/内参采纳证明.jpg',
+        description:
+            '参与撰写的涉及数字文化交流的相关材料被中国网络空间研究院内参报告采纳，并上报中央网信办领导参阅，为相关工作提供了支持。',
+        featured: true,
+    },
     {
         id: 'cac-thank-you-letter',
         category: '学校荣誉',
