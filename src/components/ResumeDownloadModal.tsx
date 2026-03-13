@@ -19,7 +19,36 @@ export default function ResumeDownloadModal({ isOpen, onClose }: ResumeDownloadM
     };
   }, [isOpen]);
 
-  // The download logic is now handled directly by <a> tags in the render method.
+  const handleDownload = async (type: 'PM' | 'OP') => {
+    const url = type === 'PM' ? './resume_PM.pdf' : './resume_OP.pdf';
+    const filename = type === 'PM' ? '夏好磊-北师大-产品.pdf' : '夏好磊-北师大-运营.pdf';
+
+    try {
+      // 1. 先用 fetch 把服务器上的 pdf 请求到浏览器内存里
+      const response = await fetch(url);
+      const blob = await response.blob();
+
+      // 2. 将内存里的文件转换成一个本地的特殊链接 (blob:http://...)
+      const localUrl = window.URL.createObjectURL(blob);
+
+      // 3. 接下来就是你原本的代码，只是把 href 换成了本地链接
+      const link = document.createElement('a');
+      link.href = localUrl; // 关键改变：这里不用原来的 url 了
+      link.download = filename; // 因为是本地链接，这个重命名命令现在 100% 会成功！
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // 4. 下载完后释放内存
+      window.URL.revokeObjectURL(localUrl);
+
+    } catch (error) {
+      console.error('下载失败', error);
+      // 如果 fetch 失败，降级回老方法（哪怕名字不对，至少能下载）
+      window.open(url, '_blank');
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -50,11 +79,8 @@ export default function ResumeDownloadModal({ isOpen, onClose }: ResumeDownloadM
               </div>
 
               <div className="p-6 flex flex-col gap-4">
-                {/* 产品方向下载链接 */}
-                <a
-                  href="/resume_PM.pdf" // 建议用绝对路径（以 / 开头，确保不会发生相对路径重定向）
-                  download="夏好磊-北师大-产品.pdf"
-                  onClick={onClose} // 点击下载后关闭弹窗
+                <button
+                  onClick={() => handleDownload('PM')}
                   className="flex flex-col items-start p-4 rounded-xl border-2 border-slate-100 dark:border-slate-700 hover:border-primary dark:hover:border-primary hover:bg-blue-50/50 dark:hover:bg-primary/10 transition-all text-left group"
                 >
                   <div className="flex items-center gap-3 w-full mb-1">
@@ -65,13 +91,10 @@ export default function ResumeDownloadModal({ isOpen, onClose }: ResumeDownloadM
                     <span className="material-symbols-outlined ml-auto text-slate-400 group-hover:text-primary transition-colors">download</span>
                   </div>
                   <p className="text-sm text-slate-500 dark:text-slate-400 ml-[52px]">重点展示产品策划、需求分析与原型设计相关经历</p>
-                </a>
+                </button>
 
-                {/* 运营方向下载链接 */}
-                <a
-                  href="/resume_OP.pdf"
-                  download="夏好磊-北师大-运营.pdf"
-                  onClick={onClose}
+                <button
+                  onClick={() => handleDownload('OP')}
                   className="flex flex-col items-start p-4 rounded-xl border-2 border-slate-100 dark:border-slate-700 hover:border-orange-500 dark:hover:border-orange-500 hover:bg-orange-50/50 dark:hover:bg-orange-500/10 transition-all text-left group"
                 >
                   <div className="flex items-center gap-3 w-full mb-1">
@@ -82,7 +105,7 @@ export default function ResumeDownloadModal({ isOpen, onClose }: ResumeDownloadM
                     <span className="material-symbols-outlined ml-auto text-slate-400 group-hover:text-orange-500 transition-colors">download</span>
                   </div>
                   <p className="text-sm text-slate-500 dark:text-slate-400 ml-[52px]">重点展示内容运营、用户增长与活动策划相关经历</p>
-                </a>
+                </button>
               </div>
             </motion.div>
           </motion.div>
