@@ -1,8 +1,12 @@
 import ContactCTA from '../components/ContactCTA';
 import { motion } from 'motion/react';
 import { fadeInUp, staggerContainer, fadeIn } from '../utils/motion-variants';
+import { useState } from 'react';
+import ResumeDownloadModal from '../components/ResumeDownloadModal';
 
 export default function Resume() {
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
+
   return (
     <div className="layout-container flex h-full grow flex-col px-4 md:px-10 lg:px-40 py-10 w-full">
       <div className="layout-content-container flex flex-col max-w-[900px] w-full mx-auto flex-1 gap-10">
@@ -16,14 +20,13 @@ export default function Resume() {
             <h1 className="text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] text-slate-900 dark:text-white">个人简历</h1>
             <p className="text-lg text-slate-600 dark:text-slate-400">夏好磊 | 男 · 22岁 · 17679055790 · henryhsia@163.com</p>
           </div>
-          <a
-            href="/resume.pdf"
-            download="夏好磊_简历.pdf"
+          <button
+            onClick={() => setIsDownloadModalOpen(true)}
             className="print:hidden flex items-center justify-center gap-2 rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold transition-transform active:scale-95 hover:bg-blue-600 shadow-sm"
           >
             <span className="material-symbols-outlined text-[18px]">download</span>
             下载 PDF
-          </a>
+          </button>
         </motion.div>
 
         <div className="flex flex-col gap-12">
@@ -286,6 +289,11 @@ export default function Resume() {
         </div>
         <ContactCTA title="对我的经历感兴趣吗？" />
       </div>
+
+      <ResumeDownloadModal
+        isOpen={isDownloadModalOpen}
+        onClose={() => setIsDownloadModalOpen(false)}
+      />
     </div>
   );
 }
